@@ -1,16 +1,17 @@
 *{
     /* margin: 0%; */
     padding: 0%;
-    color: #fff;
+    /* color: #fff; */
     box-sizing: border-box;
 }
 body{
     margin: 0%;
     padding: 0%;
     color: #fff;
+    font-family: Ubuntu;
 }
 a{
-    color: #fff;
+    color: #fff !important;
 }
 /* ======================login section =============================*/
 .backg{
@@ -34,6 +35,7 @@ a{
 
 .firsttitle{
 
+    color:#fff;
     height: 20%;
     text-align: center;
     position: relative;
@@ -45,6 +47,7 @@ a{
 
 }
 .container{
+    color:#fff;
     height: 90%;
     width:100%;
     display:flex;
@@ -75,29 +78,38 @@ a{
     padding-left: 10%;
     border-left: 5% solid white;
 }
-.tit{
-    margin-bottom: 0%;
-}
-.submits{
-    padding-top: 10%;
-    display:inline-block;
-}
 #login{
     color: #000;
     font-size: 1em;
 }
 
-.remember{
+/* .remember{
     width: 3%;
     height: 70%;
     align-items: center;
     margin-left: 19%;
-}
+} */
 .input-log{
-    width:50%;
+    width:40%;
+}
+/* .forms{
+    display:flex;
+
+} */
+.login_form{
+    display:flex;
+    flex-direction: column;
+}
+#login{
+    width:20%;
+}
+.logins{
+    display:flex;
+    padding-top: 5%;
 }
 /*--------------------------- section more----------------------- */
 .more{
+    color:#fff;
     position: relative;
     width: 90%;
     height: 100%;
@@ -108,9 +120,13 @@ a{
 }
 .exit{
     float: right;
+    color:#000;
 }
 /* **************************addperson section***********************/
-.close{
+.modal{
+    color: #000 !important;
+}
+.close1{
     background-color: #fff;
     position: relative;
     width: 100%;
@@ -164,8 +180,8 @@ a{
 /* #############################logout section ###################*/
 
 .logout{
-    color: black;
-}
+    color: #fff;
+} 
 .head_logout{
     width: 100%;
     height:15vh;
@@ -190,7 +206,7 @@ a{
     height: 20%;
     border: white 5px thick;
     position: relative;
-    font-size: 1.5rem;
+    font-size: 2.5rem;
     width:85%;
     margin: 0% auto;
     top:30%;
@@ -222,6 +238,12 @@ a{
     float: right;
     width:100%;
     margin: 0% auto;
+    
+}
+.btn-primary {
+    color: #fff;
+    background-color: #000 !important;
+    border-color: #000  !important;
 }
 .but1{
    
@@ -229,9 +251,9 @@ a{
     border-radius: 3%;
     border: black;
     font: bolder;
-    font-size: 1.5rem;
+    font-size: 2.5rem;
     padding: 1% 2%;
-    margin-left: 68%;
+    margin-left: 80%;
 }
 .but2{
     float: right;
@@ -239,22 +261,26 @@ a{
     border-radius: 3%;
     border: black;
     font: bold; 
-    font-size: 1.5rem;
+    font-size: 2.5rem;
     padding: 1% 2%;
    
 }
 #cel{
     color:black;
+    
 }
 table{
     width:100%;
     border: 1px solid black;
     border-collapse: collapse;
     margin-top: 8%;
+    padding: 6%;
+    
 }
 tr {
     text-align: left;
     border: 5% black;
+   
 }
 th {
     background-color: grey;
@@ -262,16 +288,18 @@ th {
     padding-top: 2%;
     padding-bottom: 2%;
     padding-right: 2%;
-    font-size: 1.3rem;
+    font-size: 2rem;
+    
 }
    
       td{
-          font-size: 1.3rem;
+        font-size: 1.8rem;
           padding-top:1% ;
           padding-bottom:1%; 
+        
       }
-    td .edit{
-        color: blue
+   .edit{
+        color: blue !important;
     }
     .left{
         width:15%;
@@ -284,4 +312,7 @@ th {
         height:60%;
         position: relative;
         display: inline;
+    }
+    #exampleModal{
+        color: #000 !important;
     }
