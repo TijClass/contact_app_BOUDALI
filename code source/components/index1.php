@@ -1,19 +1,20 @@
 
- <?php include 'db_connection.php'; 
-$conn = OpenCon ();  
-// echo "Connecté avec succès" ; 
+ <?php 
+ session_start ();
+ $con = mysqli_connect('localhost','root','','hajar');  
 
 if (isset($_POST['login'])) {
+
   $email=$_POST['email'];
   $pass=$_POST['pass'];
   $sql = "SELECT * FROM users WHERE email='$email' AND password ='$pass'";
-  $result = mysqli_query($conn, $sql);
+  $result = mysqli_query($con, $sql);
   if (!$row = mysqli_fetch_assoc($result)) {
     echo "Your username or password is incorrect!";
   } else {
-    header("location:logout.php");
+		$_SESSION['LOGIN'] = true;
+    header("location:home.php");
   }
-
 }
 ?>
 
