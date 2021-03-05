@@ -1,10 +1,34 @@
 
 <?php 
+$con = mysqli_connect('localhost','root','','hajar');  
 session_start();
 if (!$_SESSION['LOGIN']) {
   header("location:index1.php");
   die();
 }	
+if (isset($_POST['submit'])) {
+  $fname=$_POST['fname'];
+  $lname=$_POST['lname'];
+  $email=$_POST['email'];
+  $adress=$_POST['adress'];
+  $phone=$_POST['phone'];
+  $groupe=$_POST['group'];
+  $notes=$_POST['notes'];
+
+
+  $sql="INSERT INTO contacts (`first_name`,`last_name`,`email`,`phone`,`address1`,`group`,`notes`) VALUES ('$fname','$lname','$email','$adress','$phone','$groupe','$notes')";
+  $result = mysqli_query($con, $sql);
+  if ($result) {
+   header('location:home.php');
+  }
+  else {
+    echo $sql ;
+
+  }
+  
+
+}
+
 ?>
 
 
@@ -49,19 +73,21 @@ if (!$_SESSION['LOGIN']) {
     <button type="button" class="btn btn-primary but2" data-toggle="modal" data-target="#exampleModal">
     Add a person
 </button>
-    </div>
-    <table>
+<table class="table">
+  <thead>
     <tr>
-    <th>ID</th>
-    <th>First name</th>
-    <th>Last name</th>
-    <th>Email</th>
-    <th>adress</th>
-    <th>phone</th>
-    <th>groupe</th>
-    <th>actions</th>
-  </tr>
-<tr>
+      <th scope="col">ID</th>
+      <th scope="col">First name</th>
+      <th scope="col">Last name</th>
+      <th scope="col">Email</th>
+      <th scope="col">adress</th>
+      <th scope="col">phone</th>
+      <th scope="col">groupe</th>
+      <th scope="col">actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
     <td id="cel">58011</td>
     <td id="cel">Abby</td>
     <td id="cel">Adames</td>
@@ -69,9 +95,9 @@ if (!$_SESSION['LOGIN']) {
     <td id="cel">adress1</td>
     <td id="cel">phone1</td>
     <td id="cel">family </td>
-    <td id="cel"><a class="edit"href="#">Edit</a><i class="fas fa-times-circle" ></i></td>
-</tr>
-<tr>
+    <td id="cel"><a class="edit" href="#">supprimer</a><i class="fas fa-times-circle" ></i></td>
+    </tr>
+    <tr>
     <td id="cel">58011</td>
     <td id="cel">Abby</td>
     <td id="cel">Adames</td>
@@ -79,30 +105,10 @@ if (!$_SESSION['LOGIN']) {
     <td id="cel">adress1</td>
     <td id="cel">phone1</td>
     <td id="cel">family </td>
-    <td id="cel"><a class="edit" href="#">Edit</a><i class="fas fa-times-circle" ></i></td>
-</tr>
-<tr>
-    <td id="cel">58011</td>
-    <td id="cel">Abby</td>
-    <td id="cel">Adames</td>
-    <td id="cel">abby@anywhere.com</td>
-    <td id="cel">adress1</td>
-    <td id="cel">phone1</td>
-    <td id="cel">family </td>
-    <td id="cel"><a class="edit" href="#">Edit</a><i class="fas fa-times-circle" ></i></td>
-</tr>
-<tr>
-    <td id="cel">58011</td>
-    <td id="cel">Abby</td>
-    <td id="cel">Adames</td>
-    <td id="cel">abby@anywhere.com</td>
-    <td id="cel">adress1</td>
-    <td id="cel">phone1</td>
-    <td id="cel">family </td>
-    <td id="cel"><a class="edit" href="#">Edit</a><i class="fas fa-times-circle" ></i></td>
-</tr>
-    </table>
-</div>
+    <td id="cel"><a class="edit" href="#">supprimer</a><i class="fas fa-times-circle" ></i></td>
+    </tr>
+  </tbody>
+</table>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -115,44 +121,46 @@ if (!$_SESSION['LOGIN']) {
         </button>
       </div>
       <div class="modal-body">
-      <form>
-  <div class="form-group">
-    <label for="exampleInputEmail1">First name:</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="fname" placeholder="Enter your first name">
+        <form action="home.php" method="POST" >
+          <div class="form-group">
+            <label for="exampleInputEmail1">First name:</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="fname" placeholder="Enter your first name">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Last name:</label>
+            <input type="text" class="form-control" id="exampleInputPassword1" name="lname" placeholder="Enter your Last name">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Email:</label>
+            <input type="email" class="form-control" id="exampleInputPassword1" name="email" placeholder="Enter your Email">
+          <div class="form-group">
+            <label for="exampleInputPassword1">Adress:</label>
+            <input type="text" class="form-control" id="exampleInputPassword1" name="adress" placeholder="Enter your Adress">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Phone:</label> 
+            <input type="text" class="form-control" id="exampleInputPassword1" name="phone" placeholder="Enter your Phone">
+          </div>
+          <div class="form-group">
+                    <label class="inp-chk">
+                          <input type="radio" name="group" id="group" checked value="Family" > Family
+                      </label>
+                      <label class="inp-chk">
+                          <input type="radio" name="group" id="group" value="Friend"> Friend
+                      </label>
+                      <label class="inp-chk">
+                          <input type="radio" name="group" id="group" value="Business"> Business
+                      </label>
+                      </div>
 
-  <div class="form-group">
-    <label for="exampleInputPassword1">Last name:</label>
-    <input type="text" class="form-control" id="exampleInputPassword1" name="lname" placeholder="Enter your Last name">
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Email:</label>
-    <input type="email" class="form-control" id="exampleInputPassword1" name="email" placeholder="Enter your Email">
-  <div class="form-group">
-    <label for="exampleInputPassword1">Adress:</label>
-    <input type="text" class="form-control" id="exampleInputPassword1" name="adress" placeholder="Enter your Adress">
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Phone:</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" name="phone" placeholder="Enter your Phone">
-  </div>
-  <div class="radios">
-<span>
-<input type="radio">
-<label  name="family">Family</label></span>
-<span class="rad"><input type="radio">
-<label name="friend">Friend</label></span>
-<span class="rad"><input type="radio">
-<label name="businness">Businness</label></span>
-</div>
-<div>
-<div class="form-group">
-    <label for="exampleInputPassword1">Notes</label>
-    <input type="text" class="form-control" id="exampleInputPassword1" name="notes" >
-  </div> 
-</form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Submit</button>
+          <div>
+          <div class="form-group">
+              <label for="exampleInputPassword1">Notes</label>
+              <input type="text" class="form-control" id="exampleInputPassword1" name="notes" >
+              
+          </div>  
+          <button type="submit" class="btn btn-secondary" name="submit">Submit</button>
+        </form>
       </div>
     </div>
   </div>
