@@ -23,16 +23,10 @@ if (isset($_POST['submit'])) {
   }
   else {
     echo $sql ;
-
   }
-  
-
 }
 
 ?>
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -73,6 +67,14 @@ if (isset($_POST['submit'])) {
     <button type="button" class="btn btn-primary but2" data-toggle="modal" data-target="#exampleModal">
     Add a person
 </button>
+<div class="tabls">
+  
+<?php
+$con = mysqli_connect('localhost','root','','hajar');  
+$sql= "SELECT * FROM contacts";
+$result = mysqli_query($con, $sql);
+?>
+
 <table class="table">
   <thead>
     <tr>
@@ -86,30 +88,36 @@ if (isset($_POST['submit'])) {
       <th scope="col">actions</th>
     </tr>
   </thead>
+  <?php
+  if ($result) 
+{
+  
+  foreach($result as $row)
+  {
+    ?>
   <tbody>
     <tr>
-    <td id="cel">58011</td>
-    <td id="cel">Abby</td>
-    <td id="cel">Adames</td>
-    <td id="cel">abby@anywhere.com</td>
-    <td id="cel">adress1</td>
-    <td id="cel">phone1</td>
-    <td id="cel">family </td>
-    <td id="cel"><a class="edit" href="#">supprimer</a><i class="fas fa-times-circle" ></i></td>
+    <td id="cel"><?php echo $row['id'];?></td>
+    <td id="cel"><?php echo $row['first_name'];?></td>
+    <td id="cel"><?php echo $row['last_name'];?></td>
+    <td id="cel"><?php echo $row['email'];?></td>
+    <td id="cel"><?php echo $row['address1'];?></td>
+    <td id="cel"><?php echo $row['group'];?></td>
+    <td id="cel"><?php echo $row['notes'];?></td>
+    <td id="cel"><a class="edit" href="#">supprimer</a></td>
     </tr>
-    <tr>
-    <td id="cel">58011</td>
-    <td id="cel">Abby</td>
-    <td id="cel">Adames</td>
-    <td id="cel">abby@anywhere.com</td>
-    <td id="cel">adress1</td>
-    <td id="cel">phone1</td>
-    <td id="cel">family </td>
-    <td id="cel"><a class="edit" href="#">supprimer</a><i class="fas fa-times-circle" ></i></td>
-    </tr>
+   
   </tbody>
-</table>
+  <?php
+  }
+}
+else{ 
+  echo "NO contacts found";
+}
 
+?>
+</table>
+</div>
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
