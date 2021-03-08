@@ -26,6 +26,19 @@ if (isset($_POST['submit'])) {
   }
 }
 
+if (isset($_POST['delete'])) {
+  $id=$_POST['delete'];
+  $sql="DELETE FROM contacts  WHERE id='$id'";
+  $result = mysqli_query($con, $sql);
+  if ($result) {
+echo 'data deleted';
+header("location:home.php");
+  }else{
+    echo 'data not deleted';
+  }
+
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -104,7 +117,12 @@ $result = mysqli_query($con, $sql);
     <td id="cel"><?php echo $row['address1'];?></td>
     <td id="cel"><?php echo $row['group'];?></td>
     <td id="cel"><?php echo $row['notes'];?></td>
-    <td id="cel"><a class="edit" href="#">supprimer</a></td>
+    <!-- <td id="cel"><a class="edit" href="#">supprimer</a></td> -->
+    <td>
+    <form action="home.php" method="POST">
+      <button type="submit" class="btn btn-danger" name="delete" value="<?= $row['id'];?>">Delate</button>
+    </form>
+    </td>
     </tr>
    
   </tbody>
